@@ -1,5 +1,7 @@
 {
-  "name": "CHANGE_ME",
+  "name": "seller",
+  "private": true,
+  "license": "UNLICENSED",
   "version": "0.0.0",
   "scripts": {
     "test": "vtex-test-tools test"
