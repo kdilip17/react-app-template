@@ -1,0 +1,6 @@
+query GetSellerList {
+  getSellerList @context(provider: "borntwo.helloworldtest"){
+    SellerId
+    Name
+  }
+}

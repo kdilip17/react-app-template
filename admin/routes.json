@@ -1,0 +1,6 @@
+{
+  "admin.app.create-seller": {
+    "component": "CreateSeller",
+    "path": "/admin/app/create-seller"
+  }
+}

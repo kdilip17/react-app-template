@@ -1,0 +1,26 @@
+mutation CreateSellerOnMarketplace($seller: SellerInput!) {
+  createSellerOnMarketplace(seller: $seller) {
+    SellerId
+    Name
+    Email
+    Description
+    ExchangeReturnPolicy
+    DeliveryPolicy
+    UseHybridPaymentOptions
+    UserName
+    Password
+    SecutityPrivacyPolicy
+    CNPJ
+    CSCIdentification
+    ArchiveId
+    UrlLogo
+    ProductCommissionPercentage
+    FreightCommissionPercentage
+    FulfillmentEndpoint
+    CatalogSystemEndpoint
+    IsActive
+    FulfillmentSellerId
+    SellerType
+    IsBetterScope
+  }
+}

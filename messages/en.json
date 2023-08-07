@@ -1,4 +1,4 @@
 {
-  "admin/test": "test",
-  "store/test": "test"
+  "admin-createsellers.navigation.label" : "Create Sellers",
+  "admin-createsellers.navigation.title" : "Create Sellers"
 }

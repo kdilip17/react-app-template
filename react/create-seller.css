@@ -1,0 +1,258 @@
+.link-text-section{
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+}
+.link-text{
+  color: #08c;
+  text-decoration: none;
+}
+#apply-bo-setting{
+  color: white;
+}
+.content-container{
+  background-color: #f2f4f5;
+  margin-top: 2.5rem;
+  width: auto;
+  height: auto;
+  padding: 1rem;
+}
+.table-container{
+  display: table;
+  width: 100%;
+  overflow-y: hidden;
+  border-top: 1px solid #E6E6E6;
+}
+.thead-container{
+  display: table-header-group
+}
+.thead-row{
+  display: table-row;
+  background: #FFFFFF;
+  text-align: left;
+}
+.thead-col{
+  webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 475;
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  letter-spacing: -0.0009em;
+  display: table-cell;
+  border-bottom: 1px solid #DDDDDD;
+  vertical-align: middle;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 48px;
+  color: #979899;
+}
+.tbody-container{
+  display: table-row-group;
+}
+
+.tbody-row{
+  display: table-row;
+  background: #FFFFFF;
+  text-align: left;
+  cursor: pointer;
+}
+
+.status-col{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 100px;
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 475;
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  letter-spacing: -0.0009em;
+  border: none;
+  background: #E6E6E6;
+  color: #3B3B3B;
+  height: 26px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: 100%;
+  text-align: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.td-col1{
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 475;
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  letter-spacing: -0.0009em;
+  display: table-cell;
+  border-bottom: 1px solid #DDDDDD;
+  vertical-align: middle;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 48px;
+  min-width: 15%;
+  max-width: 15%;
+  width: 13%;
+}
+.td-col2{
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 475;
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  letter-spacing: -0.0009em;
+  display: table-cell;
+  border-bottom: 1px solid #DDDDDD;
+  vertical-align: middle;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 48px;
+  width: 15%;
+}
+.td-col3{
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 475;
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  letter-spacing: -0.0009em;
+  display: table-cell;
+  border-bottom: 1px solid #DDDDDD;
+  vertical-align: middle;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 48px;
+  min-width: 7%;
+  max-width: 7%;
+  width: 7%;
+}
+
+.td-col4{
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 475;
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  letter-spacing: -0.0009em;
+  display: table-cell;
+  border-bottom: 1px solid #DDDDDD;
+  vertical-align: middle;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 48px;
+  min-width: 10%;
+  max-width: 10%;
+  width: 10%;
+}
+
+.copy-container{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.copy-icon{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 600;
+  font-size: 0.875rem;
+  line-height: 1.1428571429;
+  letter-spacing: 0.0125em;
+  visibility: visible;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.link-col{
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 600;
+  font-size: 0.875rem;
+  line-height: 1.1428571429;
+  letter-spacing: 0.0125em;
+  color: #000000;
+  font-settings: medium;
+}
+.copy-button{
+  font-family: "VTEX Trust",-apple-system,system-ui,BlinkMacSystemFont,sans-serif;
+  font-variation-settings: 'WGHT' 600;
+  font-size: 0.875rem;
+  line-height: 1.1428571429;
+  letter-spacing: 0.0125em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  color: #545454;
+  background: transparent;
+  padding: 0.5rem 0.75rem;
+  height: 2.25rem;
+}
+.copy-col{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.td-content{
+  height: 30px;
+  margin-bottom:6px;
+  border-radius: 2px;
+  background: rgba(130, 130, 130, 0.2);
+  background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
+  background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
+  background-size: 800px 100px;
+  animation: wave-lines 2s infinite ease-out;
+}
+
+@keyframes wave-lines {
+  0% {
+      background-position: -468px 0;
+  }
+   100% {
+      background-position: 468px 0;
+  }
+}
+
+.no-records-col{
+  text-align: center;
+  margin-top: 20px;
+  height: 100px;
+}
