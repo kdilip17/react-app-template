@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
-import { useLazyQuery } from 'react-apollo';
+import { useLazyQuery, useMutation } from 'react-apollo';
 import GET_SELLER_LIST from './queries/getSellerList.gql'
+import UPDAET_SELLER_REQUEST from './queries/updateSellerRequest.gql'
 import styles from './list-seller.css'
 
 import { format } from 'date-fns'
@@ -48,7 +49,7 @@ const SimpleInputObject = ({ value, onChange }: any) => {
 const ListSellerRequest: FC = () => {
   const [showToast] = useState(false);
   const skeletonLoaderArray = new Array(10).fill(0);
-  const today = new Date();
+  const today = new Date(new Date().setDate(new Date().getDate() + 1));
   const prior = new Date(new Date().setDate(today.getDate() - 30));
   const tableLimit = 5
   const [sellerObj, setSellerObj] = useState([]);
@@ -78,6 +79,10 @@ const ListSellerRequest: FC = () => {
     fetchPolicy: 'cache-and-network',
     ssr: true
   })
+
+  const [updateSellerRequest] = useMutation(
+    UPDAET_SELLER_REQUEST
+  )
 
   useEffect(() => {
     setLoadingSellerList(true)
@@ -113,7 +118,6 @@ const ListSellerRequest: FC = () => {
   }, [statements, searchStateVal])
 
   useEffect(() => {
-    // console.log(searchObj, paginationObj)
     if (searchObj && paginationObj) {
       getSellerList({
         variables: {
@@ -139,6 +143,21 @@ const ListSellerRequest: FC = () => {
 
 
   }, [sellerList?.getSellerList?.list])
+
+  const inviteSeller = (item: any) => (e: any) => {
+    e.preventDefault()
+    console.log('========')
+    console.log(item)
+    updateSellerRequest({
+      variables: {
+        seller: {
+          id: item.id,
+          noOfInvites: item.noOfInvites,
+          invited: item.Invited
+        } as SellerInviteInput
+      }
+    })
+  }
 
   const handleSearch = (e: any) => {
     const searchVal = e.target.value;
@@ -315,14 +334,14 @@ const ListSellerRequest: FC = () => {
                         <td className={styles['td-col4']}>{item?.UserName}</td>
                         <td className={styles['td-col4']}>{formatDate(item?.creationDate)}</td>
                         {/* <td className={styles['td-col3']}>{item?.SellerType}</td> */}
-                        <td className={styles['td-col3']}>{item?.IsActive ? <Button
+                        <td className={styles['td-col3']}>{!item?.Invited ? <Button
                           variation="primary"
                           size="small"
-                          onClick={handleSearch}
+                          onClick={inviteSeller(item)}
                         >Invite</Button> : <Button
                           variation="primary"
                           size="small"
-                          onClick={handleSearch}
+                          onClick={inviteSeller(item)}
                         >Resend Invite</Button>}</td>
                       </tr>
                     )

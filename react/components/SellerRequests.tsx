@@ -29,8 +29,8 @@ const SellerRequests: FC = () => {
     FulfillmentEndpoint: '',
     CatalogSystemEndpoint: '',
     IsActive: true,
-    Invited: true,
-    noOfInvites: 1,
+    Invited: false,
+    noOfInvites: 0,
     // MerchantName: '',
     FulfillmentSellerId: 1, // Integer
     SellerType: 1,
@@ -53,20 +53,18 @@ const SellerRequests: FC = () => {
 
   const onSubmitHandler = (event: any) => {
     event.preventDefault()
-    // eslint-disable-next-line no-console
-    // console.log(state)
     createSellerRequests({
       variables: {
         // seller: { ...state } as SellerInput,
         seller: {
-          "SellerId": "uae_test",
-          "Name": "uaetest",
+          "SellerId": "pune_test1",
+          "Name": "punetest",
           "Email": "dilip.kumar@borngroup.com",
           "Description": "test",
           "ExchangeReturnPolicy": "test",
           "DeliveryPolicy": "test",
           "UseHybridPaymentOptions": true,
-          "UserName": "bgrtest",
+          "UserName": "punetest",
           "Password": "testuser101",
           "SecutityPrivacyPolicy": "test",
           "CNPJ": "12345678912345",
@@ -78,8 +76,8 @@ const SellerRequests: FC = () => {
           "FulfillmentEndpoint": "http://fulfillment.vtexcommerce.com.br/api/fulfillment?an=bornb2b",
           "CatalogSystemEndpoint": "test",
           "IsActive": true,
-          "Invited": true,
-          "noOfInvites": 1,
+          "Invited": false,
+          "noOfInvites": 0,
           "FulfillmentSellerId": 2,
           "SellerType": 1,
           "IsBetterScope": false,

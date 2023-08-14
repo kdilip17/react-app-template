@@ -1,0 +1,6 @@
+mutation updateSellerRequest($seller: SellerInviteInput!) {
+  updateSellerRequest(seller: $seller) {
+    Id
+    message
+  }
+}

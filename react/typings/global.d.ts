@@ -25,6 +25,12 @@ declare global {
     SellerType: number
     IsBetterScope: boolean
   }
+
+  interface SellerInviteInput {
+    id: string
+    noOfInvites: number
+    invited: boolean
+  }
 }
 
 export {}

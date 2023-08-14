@@ -1,7 +1,6 @@
 type Query {
   config: Config @cacheControl(scope: PUBLIC, maxAge: SHORT)
   getSellerList(search: String, pagination: String): SellerResponse @cacheControl(scope: PUBLIC, maxAge: SHORT)
-  getSellerDetailsById(SellerId: String) : CreateSellerRequestResponse @cacheControl(scope: PUBLIC)
 }
 
 type Config {
@@ -13,8 +12,8 @@ type Config {
 }
 
 type Mutation {
-  createSellerOnMarketplace(seller: SellerInput): Seller
   createSellerRequests(seller: SellerInput): CreateSellerRequestResponse
+  updateSellerRequest(seller: SellerInviteInput) : CreateSellerRequestResponse
 }
 
 type SellerResponse {
@@ -25,6 +24,12 @@ type SellerResponse {
 type CreateSellerRequestResponse {
     Id: String
     message: String
+}
+
+input SellerInviteInput {
+  id: String!
+  invited: Boolean!
+  noOfInvites: Int!
 }
 
 input SellerInput {
@@ -76,6 +81,8 @@ type Seller {
   FulfillmentEndpoint: String
   CatalogSystemEndpoint: String
   IsActive: Boolean
+  Invited: Boolean
+  noOfInvites: Int
   FulfillmentSellerId: String
   SellerType: Int
   IsBetterScope: Boolean

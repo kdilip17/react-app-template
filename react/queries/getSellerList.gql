@@ -22,6 +22,8 @@ query GetSellerList($search : String, $pagination : String) {
       FulfillmentEndpoint
       CatalogSystemEndpoint
       IsActive
+      Invited
+      noOfInvites
       FulfillmentSellerId
       SellerType
       IsBetterScope

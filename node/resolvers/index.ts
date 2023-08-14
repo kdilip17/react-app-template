@@ -109,11 +109,12 @@ const schemaSellerRequests = {
     },
     creationDate : {
       type: 'string',
-      title: 'Creation Date'
+      title: 'Creation Date',
+      format: 'date-time'
     }
   },
-  'v-indexed': ['SellerId','Name','Email','UserName','creationDate'],
-  'v-default-fields': ['SellerId','Name','Email','Description','ExchangeReturnPolicy','UseHybridPaymentOptions','UserName','SecutityPrivacyPolicy','FulfillmentEndpoint','IsActive','Invited', 'FulfillmentSellerId', 'SellerType', 'Invited', 'creationDate'],
+  'v-indexed': ['SellerId','Name','Email','UserName','Invited', 'creationDate'],
+  'v-default-fields': ['SellerId','Name','Email','Description','ExchangeReturnPolicy','UseHybridPaymentOptions','UserName','SecutityPrivacyPolicy','FulfillmentEndpoint','IsActive','Invited','FulfillmentSellerId','SellerType','creationDate'],
   'v-cache': false,
   'v-immediate-indexing': true,
 }
@@ -151,7 +152,6 @@ export const resolvers = {
       const apps = new Apps(ctx.vtex)
       const app: string = getAppId()
       let settings = await apps.getAppSettings(app)
-      // console.log(settings)
       const defaultSettings = {
         schema: false,
         title: 'Seller Request',
@@ -163,19 +163,8 @@ export const resolvers = {
       // console.log(url1, '==')
       // const headers = defaultHeaders(authToken)
       // const schemas = await hub.get(url1, headers)
-      // // console.log(schemas.data)
-      // try {
-      //   let url = `http://${account}.vtexcommercestable.com.br/api/dataentities/${sellerRequestsEntityName}/schemas/${SCHEMA_VERSION}`
-      //   // const headers = defaultHeaders(authToken)\
-      //   console.log(url)
-      //   const deleteResponse = await hub.delete(url)
-      //   console.log(deleteResponse)
-      // } catch (error) {
-      //   console.log(error)
-      // }
+      // console.log(schemas.data)
 
-
-      // console.log(settings)
       if(!settings.title) {
         settings = defaultSettings
       }
@@ -189,7 +178,6 @@ export const resolvers = {
           await hub.put(url, schemaSellerRequests, headers)
 
         } catch (e) {
-          // console.log(e)
           if(e.response.status >= 400) {
             schemaError = true
           }
@@ -197,33 +185,11 @@ export const resolvers = {
 
         settings.schema = !schemaError
         settings.schemaVersion = !schemaError ? SCHEMA_VERSION : null
-
-        // console.log(settings, '==3')
         await apps.saveAppSettings(app, settings)
       }
 
       return settings
     },
-    // TODO: remove this
-    // getSellerListOld: async (_: void, __: void, ctx: Context) => {
-    //   // console.log('getSellerList=====called===')
-    //   const {
-    //     clients: { vbase },
-    //     vtex: { logger },
-    //   } = ctx
-
-    //   try {
-    //     let sellerDetails = await vbase.getJSON(VBASE_BUCKET, VBASE_SETTINGS_FILE, true)
-    //     console.log(sellerDetails)
-    //     return [sellerDetails]
-    //   } catch (error) {
-    //     logger.error({
-    //       message: 'getsellerDetail-getVbaseError',
-    //       error,
-    //     })
-    //     return {}
-    //   }
-    // },
     getSellerList : async (_: any, args : any, ctx: Context) => {
       const {
         clients: {
@@ -236,20 +202,15 @@ export const resolvers = {
       const query : string= buildQuery(args?.search)
       let requestObj: any = {
          acronym : sellerRequestsEntityName,
-        _fields: `Id,DocumentId,SellerId,Name,Email,UserName,creationDate,SellerType,IsActive`,
+        _fields: `id,SellerId,Name,Email,UserName,creationDate,SellerType,Invited,IsActive,noOfInvites`,
         _pagination : { page: pagination?.pageNo,pageSize: pagination?.tableLimit },
         _schema : SCHEMA_VERSION,
         _sort : "creationDate DESC",
         headers : headers
       }
-      console.log(requestObj)
       if(query && query != ""){
         requestObj['_where'] = query
       }
-      // let sellerDetails = await vbase.getJSON(VBASE_BUCKET, VBASE_SETTINGS_FILE, true)
-      // console.log(sellerDetails)
-      // console.log('getSellerList=====requestObj===')
-      // console.log(requestObj)
       const result : any = await masterDataCustom.searchDocuments(requestObj)
       return {
         list : result?.data,
@@ -273,39 +234,110 @@ export const resolvers = {
       if (!seller) throw new GraphQLError('Input not provided')
 
       try {
-        // const url = routes.getSchemas(account)
-        // console.log(url)
-        // const headers = defaultHeaders(authToken)
-        // const schemas = await hub.get(url, headers)
-        // console.log(schemas.data[0].schema)
-        console.log('seller input=============')
-        console.log(seller)
         const sellerResponse: any = await masterdata.createDocument({
           dataEntity: sellerRequestsEntityName,
           fields : seller,
           schema: SCHEMA_VERSION
         })
-        // const sellerResponse: any = await masterDataCustom.createSellerRequest(sellerRequestsEntityName, seller, defaultHeaders(authToken))
-        // await vbase.saveJSON(VBASE_BUCKET, VBASE_SETTINGS_FILE, seller)
-        // const url = routes.saveSellerRequest(account)
-        // const headers = defaultHeaders(authToken)
-        // let sellerResponse: any = await hub.post(url, seller, headers)
         // TODO: remove seller response and add status and message
         // Add another form key to upload any file with limit save in vbase on formsubmit
-        console.log(sellerResponse)
         return {
           Id: sellerResponse?.Id,
           message: 'Seller Request created successfully'
         }
       } catch (error) {
-        console.log('failed=====================')
-        console.log(JSON.stringify(error.response.data))
         logger.error({
           message: 'sellerRequests-saveVbaseError',
           error,
         })
 
         throw new GraphQLError('Failed to save seller request')
+      }
+    },
+    updateSellerRequest: async (
+      _: void,
+      args : any,
+      ctx: Context
+    ) => {
+      console.log('======getSellerDetailsById', args)
+      // return 'Success'
+      const {
+        clients: {
+          masterdata,
+          marketPlaceClient
+        },
+        vtex: { logger, account },
+      } = ctx
+
+      if (!args.seller.id) throw new GraphQLError('Input not provided')
+      // const fields = {
+      //   noOfInvites: args.seller.noOfInvites + 1,
+      //   Invited: true
+      // }
+      try {
+        const outputFields = ['SellerId','Name','Email','Description','ExchangeReturnPolicy','UseHybridPaymentOptions','UserName','SecutityPrivacyPolicy','FulfillmentEndpoint','IsActive','Invited','FulfillmentSellerId','SellerType','creationDate']
+        const sellerResponse: any = await masterdata.getDocument({
+          dataEntity: sellerRequestsEntityName,
+          id: args.seller.id,
+          fields: outputFields
+        })
+        if(sellerResponse && args.seller.invited) {
+          console.log(sellerResponse)
+          const sellerInviteFields = {
+            "sellerEmail": sellerResponse.Email,
+            "sellerName": sellerResponse.Name,
+            "sellerAccountName": `${account}`,
+            "salesChannel": "1",
+            "email": sellerResponse.Email,
+            "sellerType": 1,
+            "accountId": "5fb38ace-d95e-45ad-970d-ee97cce9fbcd",
+            "document": "12345671000",
+            "hasAcceptedLegalTerms": true,
+            "address": {
+              "postalcode": "12345678",
+              "complement": "Appartment 1234",
+              "street": "VTEX street",
+              "number": "25",
+              "neighborhood": "VTEX quarter",
+              "state": "RJ",
+              "city": "Rio de Janeiro"
+            },
+            "accountable": {
+              "name": "Jane Smith",
+              "email": "dilip.kumar+1@borngroup.com",
+              "phone": "1234567890"
+            }
+          }
+          const sellerInviteResponse = await marketPlaceClient.inviteSellerLead(sellerInviteFields);
+          console.log(sellerInviteResponse)
+        }
+        // else if(sellerResponse && args.seller.invited && args.seller.noOfInvites >= 1) {
+        //   // TODO: Add resend invite code
+        // }
+        const updateFields = {
+          noOfInvites: args.seller.noOfInvites + 1,
+          Invited: true
+        }
+        const updateResponse: any = await masterdata.updatePartialDocument({
+          dataEntity: sellerRequestsEntityName,
+          id: args.seller.id,
+          fields: updateFields,
+          schema: SCHEMA_VERSION
+        })
+        console.log(updateResponse)
+        return {
+          Id: args.seller.id,
+          message: 'Seller Invited successfully'
+        }
+      } catch (error) {
+        console.log(error)
+        console.log(JSON.stringify(error.response.data))
+        logger.error({
+          message: 'sellerRequests-saveVbaseError',
+          error,
+        })
+
+        throw new GraphQLError('Failed to get seller response')
       }
     }
   }
@@ -330,7 +362,7 @@ const buildQuery = (args: string) =>{
         }
 
       }else if(cur === "searchKey" && argsAsObj["searchKey"] != ""){
-        acc = acc != "" ? acc + " AND " + `orderId = *${argsAsObj["searchKey"]}*` : `orderId = *${argsAsObj["searchKey"]}*`
+        acc = acc != "" ? acc + " AND " + `SellerId = *${argsAsObj["searchKey"]}*` : `SellerId = *${argsAsObj["searchKey"]}*`
       }
       return acc
   },"")

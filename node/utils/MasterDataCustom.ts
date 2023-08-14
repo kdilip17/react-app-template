@@ -38,8 +38,6 @@ export class MasterDataCustom extends ExternalClient {
     ).catch((_e)=>{
       console.log(_e);
     });
-    // console.log('search result=====')
-    // console.log(result)
     return result
   }
 
