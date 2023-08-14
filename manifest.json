@@ -29,27 +29,69 @@
   ],
   "policies": [
     {
+      "name": "graphql-query"
+    },
+    {
+      "name": "update-app-settings"
+    },
+    {
+      "name": "POWER_USER_DS"
+    },
+    {
+      "name": "ADMIN_DS"
+    },
+    {
       "name": "outbound-access",
       "attrs": {
-        "host": "portal.vtexcommercestable.com.br",
-        "path": "/api/catalog/*"
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/catalog/pvt/stockkeepingunit/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/dataentities/*"
       }
     },
     {
       "name": "outbound-access",
       "attrs": {
         "host": "api.vtex.com",
-        "path": "/*"
+        "path": "/api/dataentities/*"
       }
     },
     {
-      "name": "graphql-query"
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/*"
+      }
     },
     {
-      "name": "vtex.catalog-api-proxy:catalog-proxy"
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/vtexid/credential/validate"
+      }
     },
     {
-      "name": "vtex.rewriter:resolve-graphql"
+      "name": "OMSViewer"
+    },
+    {
+      "name": "ListOrders"
+    },
+    {
+      "name": "colossus-fire-event"
+    },
+    {
+      "name": "colossus-write-logs"
+    },
+    {
+      "name": "vbase-read-write"
+    },
+    {
+      "name": "update-app-settings"
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

@@ -1,0 +1,5 @@
+query GetSellerById($sellerId: String) {
+  getSellerDetailsById(SellerId: $sellerId) @context(provider: "borntwo.helloworldtest") {
+    SellerId
+  }
+}

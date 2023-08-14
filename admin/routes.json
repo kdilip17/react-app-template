@@ -1,6 +1,6 @@
 {
-  "admin.app.create-seller": {
-    "component": "CreateSeller",
-    "path": "/admin/app/create-seller"
+  "admin.app.seller-request": {
+    "component": "ListSellerRequest",
+    "path": "/admin/app/seller-request"
   }
 }

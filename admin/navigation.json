@@ -1,12 +1,12 @@
 {
   "section": "marketplace",
   "subSection": "sellers",
-  "titleId": "admin-createsellers.navigation.label",
+  "titleId": "admin-sellerrequest.navigation.label",
   "adminVersion": 4,
   "subSectionItems": [
     {
-      "labelId": "admin-createsellers.navigation.title",
-      "path": "/admin/create-seller"
+      "labelId": "admin-sellerrequest.navigation.title",
+      "path": "/admin/seller-request"
     }
   ]
 }

@@ -1,0 +1,9 @@
+query GetConfig {
+  config {
+    schema
+    title
+    anonymous
+    search
+    moderation
+  }
+}

@@ -1,0 +1,6 @@
+mutation createSellerRequests($seller: SellerInput!) {
+  createSellerRequests(seller: $seller) {
+    Id
+    message
+  }
+}

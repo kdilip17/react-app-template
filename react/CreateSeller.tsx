@@ -74,35 +74,35 @@ const CreateSeller: FC = () => {
     //     alert("Submitted")
     // }
 
-    // createSellerOnMarketplace({
-    //   variables: {
-    //     seller: {
-    //       SellerId: 'autosellerapi',
-    //       Name: 'dilipkumarapi',
-    //       Email: 'dilip.kumar+5@borngroup.com',
-    //       Description: '',
-    //       ExchangeReturnPolicy: '',
-    //       DeliveryPolicy: '',
-    //       UseHybridPaymentOptions: true,
-    //       UserName: 'dilipkumar',
-    //       Password: 'testuser101',
-    //       SecutityPrivacyPolicy: '',
-    //       CNPJ: '12345678912345',
-    //       CSCIdentification: 'autosellerapi',
-    //       ArchiveId: '1',
-    //       UrlLogo: '',
-    //       ProductCommissionPercentage: 2,
-    //       FreightCommissionPercentage: 0,
-    //       FulfillmentEndpoint:
-    //         'http://fulfillment.vtexcommerce.com.br/api/fulfillment?an=bornb2b',
-    //       CatalogSystemEndpoint: '',
-    //       IsActive: true,
-    //       FulfillmentSellerId: '',
-    //       SellerType: 1,
-    //       IsBetterScope: false,
-    //     } as unknown,
-    //   },
-    // })
+    createSellerOnMarketplace({
+      variables: {
+        seller: {
+          SellerId: 'autosellerapi',
+          Name: 'dilipkumarapi',
+          Email: 'dilip.kumar+5@borngroup.com',
+          Description: '',
+          ExchangeReturnPolicy: '',
+          DeliveryPolicy: '',
+          UseHybridPaymentOptions: true,
+          UserName: 'dilipkumar',
+          Password: 'testuser101',
+          SecutityPrivacyPolicy: '',
+          CNPJ: '12345678912345',
+          CSCIdentification: 'autosellerapi',
+          ArchiveId: '1',
+          UrlLogo: '',
+          ProductCommissionPercentage: '2',
+          FreightCommissionPercentage: '0',
+          FulfillmentEndpoint:
+            'http://fulfillment.vtexcommerce.com.br/api/fulfillment?an=bornb2b',
+          CatalogSystemEndpoint: '',
+          IsActive: true,
+          FulfillmentSellerId: '',
+          SellerType: '1',
+          IsBetterScope: false,
+        } as unknown,
+      },
+    })
   }
 
   return (

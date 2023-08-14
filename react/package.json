@@ -1,5 +1,5 @@
 {
-  "name": "seller",
+  "name": "seller_request",
   "private": true,
   "license": "UNLICENSED",
   "version": "0.0.0",
@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "apollo-client": "^2.6.8",
+    "date-fns": "^2.29.3",
     "react": "^16.12.0",
     "react-apollo": "^3.1.3",
     "react-dom": "^16.12.0",

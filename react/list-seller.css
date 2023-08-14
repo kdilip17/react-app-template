@@ -1,13 +1,3 @@
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.column {
-  float: left;
-  width: 50%;
-}
-
 .link-text-section{
   width: 100%;
   justify-content: flex-end;
@@ -23,9 +13,8 @@
 .content-container{
   background-color: #f2f4f5;
   margin-top: 2.5rem;
-  width: auto;
-  height: auto;
-  padding: 1rem;
+  width: 40%;
+  height: 220px;
 }
 .table-container{
   display: table;

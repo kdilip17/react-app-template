@@ -1,5 +1,5 @@
 {
-  "create-seller" : {
-    "component" : "CreateSeller"
+  "seller-request" : {
+    "component" : "SellerRequest"
   }
 }

@@ -1,7 +1,7 @@
 import { ClientsConfig, LRUCache, Service, ServiceContext } from '@vtex/api'
 
 import { Clients } from './clients'
-import { createSellerOnMarketplace, getSellerList } from './resolvers/seller'
+import { resolvers } from './resolvers'
 
 const TIMEOUT_MS = 800
 
@@ -37,13 +37,6 @@ declare global {
 export default new Service({
   clients,
   graphql: {
-    resolvers: {
-      Query: {
-        getSellerList,
-      },
-      Mutation: {
-        createSellerOnMarketplace,
-      },
-    },
+    resolvers
   },
 })

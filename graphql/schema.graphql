@@ -1,9 +1,30 @@
 type Query {
-  getSellerList: [Seller]
+  config: Config @cacheControl(scope: PUBLIC, maxAge: SHORT)
+  getSellerList(search: String, pagination: String): SellerResponse @cacheControl(scope: PUBLIC, maxAge: SHORT)
+  getSellerDetailsById(SellerId: String) : CreateSellerRequestResponse @cacheControl(scope: PUBLIC)
+}
+
+type Config {
+  schema: Boolean
+  title: String
+  anonymous: Boolean
+  search: Boolean
+  moderation: Boolean
 }
 
 type Mutation {
   createSellerOnMarketplace(seller: SellerInput): Seller
+  createSellerRequests(seller: SellerInput): CreateSellerRequestResponse
+}
+
+type SellerResponse {
+  list : [Seller]
+  count: Int
+}
+
+type CreateSellerRequestResponse {
+    Id: String
+    message: String
 }
 
 input SellerInput {
@@ -19,22 +40,23 @@ input SellerInput {
   SecutityPrivacyPolicy: String!
   CNPJ: String!
   CSCIdentification: String!
-  ArchiveId: String!
+  ArchiveId: Int!
   UrlLogo: String!
   ProductCommissionPercentage: Float!
   FreightCommissionPercentage: Float!
-  CategoryCommissionPercentage: Float
   FulfillmentEndpoint: String!
   CatalogSystemEndpoint: String!
   IsActive: Boolean!
-  MerchantName: String
-  FulfillmentSellerId: String!
+  Invited: Boolean
+  noOfInvites: Int
+  FulfillmentSellerId: Int!
   SellerType: Int!
   IsBetterScope: Boolean!
-  TrustPolicy: String
+  creationDate: String
 }
 
 type Seller {
+  id: String
   SellerId: String
   Name: String
   Email: String
@@ -57,4 +79,5 @@ type Seller {
   FulfillmentSellerId: String
   SellerType: Int
   IsBetterScope: Boolean
+  creationDate: String
 }

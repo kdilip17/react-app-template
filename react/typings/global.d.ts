@@ -19,8 +19,10 @@ declare global {
     FulfillmentEndpoint: string
     CatalogSystemEndpoint: string
     IsActive: boolean
-    FulfillmentSellerId: string
-    SellerType: string
+    Invited: boolean
+    noOfInvites: number
+    FulfillmentSellerId: number
+    SellerType: number
     IsBetterScope: boolean
   }
 }

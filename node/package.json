@@ -1,7 +1,6 @@
 {
   "private": true,
   "license": "UNLICENSED",
-  "name": "seller-node",
   "dependencies": {
     "@vtex/clients": "^1.0.4",
     "co-body": "^6.0.0",

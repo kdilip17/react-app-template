@@ -1,6 +1,31 @@
-query GetSellerList {
-  getSellerList @context(provider: "borntwo.helloworldtest"){
-    SellerId
-    Name
+query GetSellerList($search : String, $pagination : String) {
+  getSellerList(search : $search, pagination: $pagination) @context(provider: "borntwo.helloworldtest"){
+    count
+    list {
+      id
+      SellerId
+      Name
+      Email
+      Description
+      ExchangeReturnPolicy
+      DeliveryPolicy
+      UseHybridPaymentOptions
+      UserName
+      Password
+      SecutityPrivacyPolicy
+      CNPJ
+      CSCIdentification
+      ArchiveId
+      UrlLogo
+      ProductCommissionPercentage
+      FreightCommissionPercentage
+      FulfillmentEndpoint
+      CatalogSystemEndpoint
+      IsActive
+      FulfillmentSellerId
+      SellerType
+      IsBetterScope
+      creationDate
+    }
   }
 }
